@@ -1,0 +1,84 @@
+import tkinter as tk
+
+win = tk.Tk()
+win.title('Calculator')
+
+def fun1(p):
+    ent.insert(tk.INSERT,p)    
+def cal():
+    a=led.get()
+    b=eval(a)
+    led.set(b)
+"""def changeName():
+    butName.set("NewName")"""
+def cls():
+    led.set("")
+def plus():
+    a=led.get()
+    b=eval(a)
+    led.set("")
+    
+led=tk.StringVar()
+butName=tk.StringVar()
+    
+
+ent= tk.Entry(win,textvariable=led)
+ent.grid(row =0, columnspan=3)
+
+but1 = tk.Button(win,text='1',command=lambda : fun1("1"))
+but1.grid(row =1,column = 0)
+
+but2 = tk.Button(win,text ='2',command=lambda:fun1("2"))
+but2.grid(row =1,column = 1)
+
+but3 = tk.Button(win,text ='3',command=lambda:fun1("3"))
+but3.grid(row =1,column = 2)
+
+but4 = tk.Button(win,text ='4',command=lambda:fun1("4"))
+but4.grid(row =2,column = 0)
+
+but5 = tk.Button(win,text ='5',command=lambda:fun1("5"))
+but5.grid(row =2,column = 1)
+
+but6 = tk.Button(win,text ='6',command=lambda:fun1("6"))
+but6.grid(row =2,column = 2)
+
+but7 = tk.Button(win,text ='7',command=lambda:fun1("7"))
+but7.grid(row =3,column = 0)
+
+but8 = tk.Button(win,text ='8',command=lambda:fun1("8"))
+but8.grid(row =3,column = 1)
+
+but9 = tk.Button(win,text ='9',command=lambda:fun1("9"))
+but9.grid(row =3,column = 2)
+
+but0 = tk.Button(win,text ='0',command=lambda:fun1("0"))
+but0.grid(row =4,column = 1)
+
+but_eql = tk.Button(win,text ='=',command=cal)
+but_eql.grid(row =4,column = 2)
+
+butCls = tk.Button(win,text ='cls',command=cls)
+butCls.grid(row=4,column=0)
+
+but_add =tk.Button(win,text='+',command=None)
+but_add.grid(row=5,column=0)
+
+but_min =tk.Button(win,text='-',command=None)
+but_min.grid(row=5,column=1)
+
+but_mul =tk.Button(win,text='x',command=None)
+but_mul.grid(row=5,column=2)
+
+but_div =tk.Button(win,text='/',command=None)
+but_div.grid(row=6,column=0)
+
+but_dot =tk.Button(win,text='.',command=None)
+but_dot.grid(row=6,column=2)
+"""butName = tk.Button(win,textvariable=butName,command=cal)
+butName.grid(row=5,column=1)"""
+
+
+win.mainloop()
+
+#报告发送到315350457@qq.com
