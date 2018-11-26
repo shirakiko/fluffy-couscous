@@ -19,7 +19,7 @@ def cls():
 """清除键(普通计算器中的C)"""
 def dele():
     ent.delete(tk.INSERT)
-"""撤销键（撤销光标数字）"""
+"""撤销键（撤销后光标数字）"""
 led=tk.StringVar()
 ent= tk.Entry(win,textvariable=led)
 ent.grid(row =0, columnspan=3)
