@@ -3,25 +3,24 @@ import tkinter as tk
 win = tk.Tk()
 win.title('Calculator')
 
-def fun1(p):
-    ent.insert(tk.INSERT,p)    
+def fun1(p):   
+    ent.insert(tk.INSERT,p)
+"""完成所有用按钮输入"""    
 def cal():
-    a=led.get()
-    b=eval(a)
-    led.set(b)
-"""def changeName():
-    butName.set("NewName")"""
-def cls():
+    try:
+        a=led.get()
+        b=eval(a)
+        led.set(b)
+    except:
+        led.set('E')
+"""点击等于号完成运算，如果无法运算（如除以0），则输出E""" 
+def cls():                      
     led.set("")
-def plus():
-    a=led.get()
-    b=eval(a)
-    led.set("")
-    
+"""清除键(普通计算器中的C)"""
+def dele():
+    ent.delete(tk.INSERT)
+"""撤销键（撤销光标数字）"""
 led=tk.StringVar()
-butName=tk.StringVar()
-    
-
 ent= tk.Entry(win,textvariable=led)
 ent.grid(row =0, columnspan=3)
 
@@ -61,24 +60,24 @@ but_eql.grid(row =4,column = 2)
 butCls = tk.Button(win,text ='cls',command=cls)
 butCls.grid(row=4,column=0)
 
-but_add =tk.Button(win,text='+',command=None)
+but_add =tk.Button(win,text='+',command=lambda: fun1('+'))
 but_add.grid(row=5,column=0)
 
-but_min =tk.Button(win,text='-',command=None)
+but_min =tk.Button(win,text='-',command=lambda :fun1('-'))
 but_min.grid(row=5,column=1)
 
-but_mul =tk.Button(win,text='x',command=None)
+but_mul =tk.Button(win,text='x',command=lambda:fun1('*'))
 but_mul.grid(row=5,column=2)
 
-but_div =tk.Button(win,text='/',command=None)
+but_div =tk.Button(win,text='/',command=lambda: fun1('/'))
 but_div.grid(row=6,column=0)
 
-but_dot =tk.Button(win,text='.',command=None)
+but_dot =tk.Button(win,text='.',command=lambda: fun1('.'))
 but_dot.grid(row=6,column=2)
-"""butName = tk.Button(win,textvariable=butName,command=cal)
-butName.grid(row=5,column=1)"""
 
-
+but_del =tk.Button(win,text="delete",command=dele)
+but_del.grid(row=6,column=1)
+"""设置各个按钮"""
 win.mainloop()
 
 #报告发送到315350457@qq.com
