@@ -6,7 +6,8 @@ b= int(input("Please set the other one for it."))
 board[a-1][b-1]="x"
 #设定一个战舰的位置
 
-("Now you can launch a missile to hit your enermy.")
+print("Now you can launch a missile to hit your enermy.")
+
 y= int(input("Please enter the 'y'"))
 x= int(input("Please enter the 'x'"))
 
