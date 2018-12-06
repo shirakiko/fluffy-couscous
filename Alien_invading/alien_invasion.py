@@ -21,13 +21,15 @@ def run_game():
     bullets = Group()
     #设置背景色
     bg_color = (230,230,230)
+    #锁帧
+    clock = pygame.time.Clock()
     #开始主循环
     while True:
         gf.check_events(ai_settings,screen,ship,bullets)
         gf.update_bullets(bullets)
         gf.update_screen(ai_settings,screen,ship,alien,bullets)
         ship.update()
-        
+        clock.tick(250)
         
         
 run_game()
