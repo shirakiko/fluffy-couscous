@@ -4,11 +4,7 @@ from bullet import Bullet
 from alien import Alien
 from time import sleep
 
-def check_events():
-    """响应按键和鼠标事件"""
-    for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
+
 def update_screen(ai_settings,screen,stats,ship,aliens,bullets,play_button):
     """更新屏幕上的图像，并切换到新屏幕"""
     #每次循环时都重绘屏幕
@@ -26,7 +22,7 @@ def update_screen(ai_settings,screen,stats,ship,aliens,bullets,play_button):
     #让最近绘制的屏幕可见
     pygame.display.flip()
 
-def check_events(ai_settings,screen,ship,bullets):
+def check_events(ai_settings,screen,stats,play_button,ship,aliens,bullets):
     """响应按键和鼠标事件"""
     for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -37,7 +33,23 @@ def check_events(ai_settings,screen,ship,bullets):
 
             elif event.type == pygame.KEYUP:
                 check_keyup_events(event,ship)
-
+                
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_x,mouse_y = pygame.mouse.get_pos()
+                check_play_button(ai_settings,screen,stats,play_button,ship,aliens,bullets,mouse_x,mouse_y)
+                
+def check_play_button(ai_settings,screen,stats,play_button,ship,aliens,bullets,mouse_x,mouse_y):
+    """玩家单击Play按钮时开始新游戏"""
+    if play_button.rect.collidepoint(mouse_x,mouse_y):
+        #重置游戏的统计信息
+        stats.reset_stats()
+        stats.game_active = True
+        #清空外星人列表和子弹列表
+        aliens.empty()
+        bullets.empty()
+        #创建一群新的外星人，并让飞船居中
+        create_fleet(ai_settings,screen,ship,aliens)
+        ship.center_ship()
 def check_keydown_events(event,ai_settings,screen,ship,bullets):
     """响应按键"""
     if event.key == pygame.K_RIGHT:
@@ -139,6 +151,7 @@ def update_aliens(ai_settings,stats,screen,ship,aliens,bullets):
         ship_hit(ai_settings,stats,screen,ship,aliens,bullets)
     #检查是否有外星人到达了屏幕底端
     check_aliens_bottom(ai_settings,stats,screen,ship,aliens,bullets)
+    
 def ship_hit(ai_settings,stats,screen,ship,aliens,bullets):
     """响应被外星人撞到的飞船"""
     if stats.ships_left >0:

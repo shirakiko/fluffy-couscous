@@ -33,7 +33,7 @@ def run_game():
     clock = pygame.time.Clock()
     #开始主循环
     while True:
-        gf.check_events(ai_settings,screen,ship,bullets)
+        gf.check_events(ai_settings,screen,stats,play_button,ship,aliens,bullets)
         if stats.game_active:
             ship.update()
             gf.update_bullets(ai_settings,screen,ship,aliens,bullets)
@@ -41,7 +41,7 @@ def run_game():
             
         gf.update_screen(ai_settings,screen,stats,ship,aliens,bullets,play_button)
         clock.tick(250)
-       
+      
         
         
 run_game()
