@@ -9,7 +9,7 @@ def check_events():
     for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-def update_screen(ai_settings,screen,ship,aliens,bullets):
+def update_screen(ai_settings,screen,stats,ship,aliens,bullets,play_button):
     """更新屏幕上的图像，并切换到新屏幕"""
     #每次循环时都重绘屏幕
     screen.fill(ai_settings.bg_color)
@@ -19,6 +19,10 @@ def update_screen(ai_settings,screen,ship,aliens,bullets):
         bullet.draw_bullet()
     ship.blitme()
     aliens.draw(screen)
+    #如果游戏处于非活动状态,就绘制Play按钮
+    if not stats.game_active:
+        play_button.draw_button()
+        
     #让最近绘制的屏幕可见
     pygame.display.flip()
 
