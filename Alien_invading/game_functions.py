@@ -5,7 +5,7 @@ from alien import Alien
 from time import sleep
 
 
-def update_screen(ai_settings,screen,stats,ship,aliens,bullets,play_button):
+def update_screen(ai_settings,screen,stats,sb,ship,aliens,bullets,play_button):
     """更新屏幕上的图像，并切换到新屏幕"""
     #每次循环时都重绘屏幕
     screen.fill(ai_settings.bg_color)
@@ -15,6 +15,8 @@ def update_screen(ai_settings,screen,stats,ship,aliens,bullets,play_button):
         bullet.draw_bullet()
     ship.blitme()
     aliens.draw(screen)
+    #显示得分
+    sb.show_score()
     #如果游戏处于非活动状态,就绘制Play按钮
     if not stats.game_active:
         play_button.draw_button()
@@ -42,6 +44,8 @@ def check_play_button(ai_settings,screen,stats,play_button,ship,aliens,bullets,m
     """玩家单击Play按钮时开始新游戏"""
     button_clicked = play_button.rect.collidepoint(mouse_x,mouse_y)
     if button_clicked and not stats.game_active:
+        #重置游戏设置
+        ai_settings.initialize_dynamic_settings()
         #隐藏光标
         pygame.mouse.set_visible(False)
         #重置游戏的统计信息
